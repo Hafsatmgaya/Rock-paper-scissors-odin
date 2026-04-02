@@ -39,3 +39,15 @@ else {
     console.log("You lose!")
 }
 }
+console.log(`You win! ${humanChoice} beats ${computerChoice}`);{
+        humanScore++;
+    } 
+    else {
+        console.log(`You lose! ${computerChoice} beats ${humanChoice}`); {
+        computerScore++;
+    }
+}
+
+function playgame() {
+    playground()
+}
