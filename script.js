@@ -1,4 +1,7 @@
-console.log("Hello World");
+const resultsDiv = document.querySelector("#results");
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     let random = Math.random();
     if(random < 0.33){
@@ -10,48 +13,43 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let input = prompt("Enter your choice");
-    return input.toLowerCase();
-}
+document.querySelector("#rock").addEventListener("click", () => {
+  playRound("rock");
+});
+document.querySelector("#paper").addEventListener("click", () => {
+  playRound("paper");
+});
+document.querySelector("#scissors").addEventListener("click", () => {
+  playRound("scissors");
+});
 
-let humanScore = 0;
-let computerScore = 0;
-
-function playRound(humanChoice, computerChoice) {
+function playRound(humanChoice) {
+    let computerChoice = getComputerChoice();
     humanChoice = humanChoice.toLowerCase();
 
     if (humanChoice === computerChoice) {
-        console.log("It's a tie!");
+        resultsDiv.textContent = "It's a tie";
     } 
     else if (
         (humanChoice === "rock" && computerChoice === "scissors") ||
         (humanChoice === "paper" && computerChoice === "rock") ||
         (humanChoice === "scissors" && computerChoice === "paper")
     ) {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}`);
         humanScore++;
+        resultsDiv.textContent = `You win! ${humanChoice} beats ${computerChoice}`;
     } 
     else {
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
         computerScore++;
+        resultsDiv.textContent = `You lose! ${computerChoice} beats ${humanChoice}`;
     }
+    if (humanScore === 5) {
+    resultsDiv.textContent = "🎉 You win the game!";
+    return;
 }
 
-function playGame() {
-    for (let i = 0; i < 5; i++) {
-        let humanSelection = getHumanChoice();
-        let computerSelection = getComputerChoice();
-
-        playRound(humanSelection, computerSelection);
-    }
-    if (humanScore > computerScore) {
-    console.log("You won the game!");
-} else if (computerScore > humanScore) {
-    console.log("You lost the game!");
-} else {
-    console.log("The game is a tie!");
+if (computerScore === 5) {
+    resultsDiv.textContent = "💻 You lose the game!";
+    return;
 }
-}  
+    }
 
-playGame();
