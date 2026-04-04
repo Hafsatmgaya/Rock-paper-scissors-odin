@@ -1,4 +1,3 @@
-console.log("Hello World");
 function getComputerChoice() {
     let random = Math.random();
     if(random < 0.33){
@@ -10,11 +9,15 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let input = prompt("Enter your choice");
-    return input.toLowerCase();
-}
-
+document.querySelector("#rock").addEventListener("click", () => {
+  playRound("rock");
+});
+document.querySelector("#paper").addEventListener("click", () => {
+  playRound("paper");
+});
+document.querySelector("#scissors").addEventListener("click", () => {
+  playRound("scissors");
+});
 let humanScore = 0;
 let computerScore = 0;
 
